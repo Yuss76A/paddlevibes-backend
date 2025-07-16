@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Lake(models.Model):
     name = models.CharField(max_length=100)
@@ -18,6 +19,6 @@ class Photo(models.Model):
 
 class Review(models.Model):
     lake = models.ForeignKey(Lake, related_name='reviews', on_delete=models.CASCADE)
-    user = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField(blank=True)
