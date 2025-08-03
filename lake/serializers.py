@@ -1,10 +1,12 @@
 from rest_framework import serializers
 from .models import Lake, Photo, Review
 
+
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = ['id', 'image', 'description', 'lake']
+
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,6 +17,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         if not 1 <= value <= 5:
             raise serializers.ValidationError("El rating debe ser entre 1 y 5.")
         return value
+
 
 class LakeSerializer(serializers.ModelSerializer):
     photos = PhotoSerializer(many=True, read_only=True)
