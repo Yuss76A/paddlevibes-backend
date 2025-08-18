@@ -5,6 +5,7 @@ from .serializers import PhotoSerializer, LakeSerializer, ReviewSerializer
 from django.db.models import Avg
 from rest_framework.decorators import action
 
+
 class LakeViewSet(viewsets.ModelViewSet):
     queryset = Lake.objects.prefetch_related('photos', 'reviews').all()
     serializer_class = LakeSerializer
@@ -21,10 +22,12 @@ class LakeViewSet(viewsets.ModelViewSet):
             'average_rating': lake.reviews.aggregate(Avg('rating'))['rating__avg']
         })
 
+
 class PhotoViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.select_related('lake').all()
     serializer_class = PhotoSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.select_related('lake', 'user').all()

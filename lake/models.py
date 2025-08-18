@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Lake(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
@@ -9,7 +10,7 @@ class Lake(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 
 class Photo(models.Model):
     lake = models.ForeignKey(Lake, related_name='photos', on_delete=models.CASCADE)

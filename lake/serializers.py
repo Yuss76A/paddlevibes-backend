@@ -26,8 +26,8 @@ class LakeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lake
-        fields = ['id', 'name', 'description', 'latitude', 'longitude', 
-                 'photos', 'reviews', 'average_rating']
+        fields = ['id', 'name', 'description', 'latitude', 'longitude',
+                  'photos', 'reviews', 'average_rating']
 
     def get_average_rating(self, obj):
         reviews = obj.reviews.all()

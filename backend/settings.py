@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+import environ
+
+env = environ.Env()
+env.read_env()
+
+SECRET_KEY = env('SECRET_KEY')
+
 
 # Application definition
 
